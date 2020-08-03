@@ -89,5 +89,7 @@ INSERT INTO usuarios_roles (usuario_id,role_id) value (2,2);
 INSERT INTO usuarios_roles (usuario_id,role_id) value (2,1);
 INSERT INTO usuarios_roles (usuario_id,role_id) value (3,3);
 
+insert into becas (id, estado ,facha_registro ,observacion ,id_carrera ,id_estudiante ,id_institucion ,id_patrocinador ) values (null,'p','2020/10/10','vacio',1,2,5,1);
+insert into becas (id, estado ,facha_registro ,observacion ,id_carrera ,id_estudiante ,id_institucion ,id_patrocinador ) values (null,'p','2020/10/10','vacio',1,2,1,null);
 
 

@@ -1,13 +1,11 @@
 package com.make.miracle.backend.controllers;
 
-import com.make.miracle.backend.models.entity.Ciudad;
-
-import com.make.miracle.backend.models.entity.Estudiante;
-import com.make.miracle.backend.models.entity.Pais;
-import com.make.miracle.backend.models.entity.Patrocinador;
-import com.make.miracle.backend.models.services.IPatrconadorServices;
+import com.make.miracle.backend.models.domain.Patrocinador;
+import com.make.miracle.backend.models.services.PatrocinadorServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +20,14 @@ import java.util.Map;
 public class PatrocinadorControllers {
 
     @Autowired
-    private IPatrconadorServices patrocinadorServices;
+    private PatrocinadorServices patrocinadorServices;
+
+
+    // Listado de Patrocinador con Paginator
     @GetMapping("/patrocinadores")
-    public List<Patrocinador> index (){
-
-        return patrocinadorServices.findAll();
+    public ResponseEntity<Page<Patrocinador>> index(Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(patrocinadorServices.findAll(pageable));
     }
-
-
 
 
     //metodo obtener informacion por id del patrocinador
@@ -47,78 +45,72 @@ public class PatrocinadorControllers {
         //MANEJO DE ERROR EN CASO NO SE ENCUENTRE EL ID
         if (patrocinador == null) {
             response.put("mensaje", "El Patrocinador ID : ".concat(id.toString().concat("No Existe en la Base de datos")));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Patrocinador>(patrocinador, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
-//metodo post es para hacer el insert
+
+
+    //metodo post es para hacer el insert
     @PostMapping("/patrocinadores")
     public ResponseEntity<?> create(@RequestBody Patrocinador patrocinador) {
-        Patrocinador patrocinadorNew = null;
         Map<String, Object> response = new HashMap<>();
-
         try {
-            patrocinadorNew = patrocinadorServices.save(patrocinador);
+            patrocinadorServices.save(patrocinador);
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al Insertar datos en la BD");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
-
         response.put("mensaje", "El Patrocinador ah sido creado con exito");
-        response.put("patrocinador", patrocinadorNew);
+        response.put("patrocinador", patrocinador.getNombre() + "welcome ");
 
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    //actualizar Patrocinador
     @PutMapping("/patrocinadores/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Patrocinador update(@RequestBody Patrocinador patrocinador, @PathVariable Long id) {
-        Patrocinador patrocinadorActual = patrocinadorServices.finById(id);
-        patrocinadorActual.setPasaporte(patrocinador.getPasaporte());
-        patrocinadorActual.setNombre(patrocinador.getNombre());
-        patrocinadorActual.setApellido(patrocinador.getApellido());
-        patrocinadorActual.setTelefono(patrocinador.getTelefono());
-        patrocinadorActual.setCorreo(patrocinador.getCorreo());
-        patrocinadorActual.setCiudad(patrocinador.getCiudad());
+    public ResponseEntity<?> update(@RequestBody Patrocinador patrocinador, @PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+
+            patrocinadorServices.Update(patrocinador, id);
+            response.put("patrocinado", patrocinador.getNombre() + " actualizado ");
+            response.put("msj", "actualizacion exitosa");
+
+        } catch (DataAccessException e) {
+            response.put("Patrocinador", "Error al actualizar en la bd");
+            response.put("Error", e.getMessage().concat("_").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
 
 
-        return patrocinadorServices.save(patrocinadorActual);
     }
 
 
     //patrocinador cambiar estado de true a false o visebersa
-
     @PutMapping("/patrocinadores/estado/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Patrocinador delete(@PathVariable Long id) {
-        Patrocinador estado = patrocinadorServices.finById(id);
-        if (estado.getEstado()==true){
-            estado.setEstado(false);
-        } else {
-            estado.setEstado(true);
+    public ResponseEntity<?> statusUpdate(@PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            patrocinadorServices.statusUpdate(id);
+            response.put("Patrocinador ", "estado actualizado");
+        } catch (DataAccessException e) {
+            response.put("msj", "Error al realizar la peticion");
+            response.put("Error", e.getMessage().concat("_").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return patrocinadorServices.save(estado);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
-    //listado de paises
-    @GetMapping("/patrocinadores/paises")
-    public List<Pais> ListaPaises(){
-        return patrocinadorServices.findAllPais();
+    @GetMapping("/patrocinadores/top")
+    public List<Patrocinador> findTop5ByOrderByIdDesc() {
+        return patrocinadorServices.findTop5ByOrderByIdDesc();
     }
-
-
-    //listado de ciudadades
-    @GetMapping("/patrocinadores/paises/ciudades")
-    public List<Ciudad> ListaCiudad(){
-        return patrocinadorServices.findAllCiudad();
-    }
-
-
-
-
 
 }

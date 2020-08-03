@@ -1,20 +1,19 @@
 package com.make.miracle.backend.controllers;
 
 
-import com.make.miracle.backend.models.entity.Distrito;
-import com.make.miracle.backend.models.entity.Estudiante;
-import com.make.miracle.backend.models.services.IEstudianteServices;
+import com.make.miracle.backend.models.domain.Estudiante;
+import com.make.miracle.backend.models.services.EstudianteServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.zip.DataFormatException;
+
+import java.util.*;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -22,97 +21,94 @@ import java.util.zip.DataFormatException;
 public class EstudianteControllers {
 
     @Autowired
-    private IEstudianteServices estudianteservices;
+    private EstudianteServices estudianteservices;
 
 
     //Listar Estudiante
 //    @Secured({"ROLE_ADMIN","ROLE_SUPERVISOR"})
     @GetMapping("/estudiantes")
-    public List<Estudiante> index() {
-        return estudianteservices.findAll();
+    public ResponseEntity<Page<Estudiante>> findAll(Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(estudianteservices.findAll(pageable));
     }
 
-    @Secured({"ROLE_ADMIN"})
+
+    //Obtener  usuario por su Id
+
     @GetMapping("/estudiantes/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
-        Estudiante estudiante = null;
+        Estudiante estudiante;
         Map<String, Object> response = new HashMap<>();
         try {
             estudiante = estudianteservices.finById(id);
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al Realizar la Consulta en la BD");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        //MANEJO DE ERROR EN CASO NO SE ENCUENTRE EL ID
         if (estudiante == null) {
             response.put("mensaje", "El Estudiante ID : ".concat(id.toString().concat("No Existe en la Base de datos")));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Estudiante>(estudiante, HttpStatus.OK);
+        return new ResponseEntity<>(estudiante, HttpStatus.OK);
 
     }
 
 
-    @Secured({"ROLE_ADMIN"})
     @PostMapping("/estudiantes")
     public ResponseEntity<?> create(@RequestBody Estudiante estudiante) {
-        Estudiante estudianteNew = null;
-        Map<String, Object> response = new HashMap<>();
 
+        Map<String, Object> response = new HashMap<>();
         try {
-            estudianteNew = estudianteservices.save(estudiante);
+            estudianteservices.save(estudiante);
+            response.put("mensaje", "El estudiante ah sido creado con exito ");
+            response.put("estudiante", estudiante.getNombre() + " Welcome");
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al Insertar datos en la BD");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        response.put("mensaje", "El estudiante ah sido creado con exito");
-        response.put("estudiante", estudianteNew);
-
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 
-    @Secured({"ROLE_ADMIN"})
+    //Metodo Actualizar Estudiante
+
     @PutMapping("/estudiantes/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Estudiante update(@RequestBody Estudiante estudiante, @PathVariable Long id) {
-        Estudiante estudianteactual = estudianteservices.finById(id);
-        estudianteactual.setDni(estudiante.getDni());
-        estudianteactual.setNombre(estudiante.getNombre());
-        estudianteactual.setApellido(estudiante.getApellido());
-        estudianteactual.setSexo(estudiante.getSexo());
-        estudianteactual.setFechaNac(estudiante.getFechaNac());
-        estudianteactual.setDireccion(estudiante.getDireccion());
-        estudianteactual.setTelefono(estudiante.getTelefono());
-        estudianteactual.setDistrito(estudiante.getDistrito());
-
-        return estudianteservices.save(estudianteactual);
-    }
-
-
-    @Secured({"ROLE_ADMIN"})
-    @PutMapping("/estudiantes/estado/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Estudiante delete(@PathVariable Long id) {
-        Estudiante estado = estudianteservices.finById(id);
-        if (estado.getEstado() == true) {
-            estado.setEstado(false);
-        } else {
-            estado.setEstado(true);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Estudiante estudiante) {
+        Map<String, Object> respo = new HashMap<>();
+        try {
+            estudianteservices.update(id, estudiante);
+            respo.put("estudiante ", estudiante.getNombre() + " actualizado ");
+        } catch (DataAccessException e) {
+            respo.put("Error en la bd", "Error");
+            respo.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(respo, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(respo, HttpStatus.OK);
 
-        return estudianteservices.save(estado);
+    }
+
+    //Actualizacion de Estado
+
+    @PutMapping("/estudiantes/estado/{id}")
+    public ResponseEntity<?> updateStatus(@PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            estudianteservices.updateStatus(id);
+            response.put("Status", "estado actualizado");
+        } catch (DataAccessException e) {
+            response.put("Status", "Error al Realizar la consulta");
+            response.put("Error", e.getMessage().concat(" ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
-    @Secured({"ROLE_ADMIN"})
-    @GetMapping("/estudiantes/distritos")
-    public List<Distrito> listarDistritos() {
-        return estudianteservices.findAllDistrito();
-
+    @GetMapping("/estudiantes/top")
+    public List<Estudiante> findTop3ByOrderByIdDesc() {
+        return estudianteservices.findTop3ByOrderByIdDesc();
     }
+
+
 }
