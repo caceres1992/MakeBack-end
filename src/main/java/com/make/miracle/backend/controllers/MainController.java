@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class MainController {
 
     @GetMapping
