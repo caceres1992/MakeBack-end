@@ -18,7 +18,7 @@ public class InstitutoService {
 
 
     public List<Institucion> findAll() {
-        return (List<Institucion>) institutoRepository.findAll();
+        return  institutoRepository.findAll();
     }
 
     public List<Institucion> findBytipodeInstitucion(String name) {
@@ -26,7 +26,23 @@ public class InstitutoService {
         return institutoRepository.findByTipoInstitucionNombre(name);
     }
 
-    ;
+    public List<Institucion> saveAllInstitutciones(List<Institucion> institucions){
+            List<Institucion> newInstitucion;
+            newInstitucion = institutoRepository.saveAll(institucions);
+            return  newInstitucion;
+    }
+
+    public Institucion update (Institucion institucion ,Long id){
+                Institucion institucionupdate = institutoRepository.getOne(id);
+                institucionupdate.setCarrera(institucion.getCarrera());
+                institucionupdate.setNombre(institucion.getNombre());
+                institucionupdate.setTipoInstitucion(institucion.getTipoInstitucion());
+        return institucionupdate;
+    }
+
+    public Long countInstituciones(String institucion){
+        return institutoRepository.countByTipoInstitucionNombre(institucion);
+    }
 
 
 }

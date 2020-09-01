@@ -12,44 +12,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 @Entity
 @Table(name = "INSTITUCIONES")
+@Data
 public class Institucion implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_carrera")
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+	private Carrera carrera;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_tipo_institucion")
 	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	private TipoInstitucion tipoInstitucion;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public TipoInstitucion getTipoInstitucion() {
-		return tipoInstitucion;
-	}
-
-	public void setTipoInstitucion(TipoInstitucion tipoInstitucion) {
-		this.tipoInstitucion = tipoInstitucion;
-	}
 
 	private static final long serialVersionUID = 1L;
 }

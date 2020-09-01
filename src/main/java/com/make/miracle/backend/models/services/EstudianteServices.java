@@ -61,10 +61,11 @@ public class EstudianteServices {
         if (!estudiante.getApellido().isEmpty()) estudianteUpdate.setApellido(estudiante.getApellido());
         if (!estudiante.getSexo().isEmpty()) estudianteUpdate.setSexo(estudiante.getSexo());
         if (estudiante.getFechaNac() != null) estudianteUpdate.setFechaNac(estudiante.getFechaNac());
-        if (!estudiante.getCorreo().isEmpty()) estudianteUpdate.setCorreo(estudiante.getCorreo());
-        if (!estudiante.getTelefono().isEmpty()) estudianteUpdate.setTelefono(estudiante.getTelefono());
-        estudianteUpdate.setDireccion(estudiante.getDireccion());
-        estudianteUpdate.setDistrito(estudiante.getDistrito());
+         estudianteUpdate.setCorreo(estudiante.getCorreo());
+         estudianteUpdate.setTelefono(estudiante.getTelefono());
+         estudianteUpdate.setCodigoEstudiante(estudiante.getCodigoEstudiante());
+         estudianteUpdate.setDireccion(estudiante.getDireccion());
+         estudianteUpdate.setDistrito(estudiante.getDistrito());
 
         return estudianteUpdate;
 

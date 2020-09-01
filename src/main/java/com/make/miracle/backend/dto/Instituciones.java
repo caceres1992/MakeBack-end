@@ -1,17 +1,20 @@
 package com.make.miracle.backend.dto;
 
+
+
 public class Instituciones {
-    private Long id;
+
     private String type_institution;
     private String name;
     private int total;
 
-    public Long getId() {
-        return id;
+    public Instituciones(String type_institution, String name, int total) {
+        this.type_institution = type_institution;
+        this.name = name;
+        this.total = total;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Instituciones() {
     }
 
     public String getType_institution() {

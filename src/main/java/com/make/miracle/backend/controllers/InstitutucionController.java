@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("/api")
 public class InstitutucionController {
@@ -32,11 +32,71 @@ public class InstitutucionController {
     }
 
 
+//http://localhost:8080/api/institucion/?name=UNIVERSIDAD || INSTITUTO
     @GetMapping("institucion/")
     public List<Institucion> findBytipodeInstitucion(@Param(value = "name") String name) {
         return institutoService.findBytipodeInstitucion(name);
 
     }
 
+    //http://localhost:8080/api/institucion/UNIVERSIDAD || INSTITUTO
+    @GetMapping("institucion/{institucion}")
+    public ResponseEntity<?> CountByTipodeInstitucion(@PathVariable String institucion) {
+        Map<String,Object>response= new HashMap<>();
+        try {
+
+             response.put("total",institutoService.countInstituciones(institucion));
+        }
+        catch (DataAccessException e){
+            response.put("msj",e.getMessage().concat("/ ")
+                    .concat(e.getMostSpecificCause().getMessage()));
+            response.put("Error","Error en la peticion");
+
+            return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+
+    @PostMapping("institucion")
+    public ResponseEntity<?> saveAllInstitutciones(@RequestBody List<Institucion> institucions) {
+        Map<String,Object> response = new HashMap<>();
+        try {
+                    institutoService.saveAllInstitutciones(institucions);
+                    response.put("msj","Creado con exito " + institucions.size() + "institutcion(es)");
+                    response.put("success" , "success");
+
+        }catch (DataAccessException e){
+                    response.put("msj",e.getMessage().concat("/ ")
+                            .concat(e.getMostSpecificCause().getMessage()));
+                    response.put("Error","Error en la peticion");
+
+                    return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+        return new ResponseEntity<>(response,HttpStatus.CREATED);
+
+    }
+
+    @PutMapping("institucion/{id}")
+    public ResponseEntity<?> updateInstitutcion(@PathVariable Long id, @RequestBody Institucion institucions) {
+
+        Map<String,Object> response = new HashMap<>();
+        try {
+            institutoService.update(institucions,id);
+            response.put("msj","actualizado con exito " + institucions.getNombre());
+            response.put("success" , "success");
+
+        }catch (DataAccessException e){
+            response.put("msj",e.getMessage().concat("/ ")
+                    .concat(e.getMostSpecificCause().getMessage()));
+            response.put("Error","Error en la peticion");
+
+            return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+        return new ResponseEntity<>(response,HttpStatus.CREATED);
+
+    }
 
 }

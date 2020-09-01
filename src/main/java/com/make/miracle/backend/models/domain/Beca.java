@@ -17,9 +17,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 @Entity
 @Table(name = "BECAS")
+@Data
 public class Beca implements Serializable {
 
     @Id
@@ -62,69 +64,6 @@ public class Beca implements Serializable {
     }
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public String getObservacion() {
-        return observacion;
-    }
-
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public Patrocinador getPatrocinador() {
-        return patrocinador;
-    }
-
-    public void setPatrocinador(Patrocinador patrocinador) {
-        this.patrocinador = patrocinador;
-    }
-
-    public Institucion getInstitucion() {
-        return institucion;
-    }
-
-    public void setInstitucion(Institucion institucion) {
-        this.institucion = institucion;
-    }
-
-    public Carrera getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
-    }
 
     private static final long serialVersionUID = 1L;
 

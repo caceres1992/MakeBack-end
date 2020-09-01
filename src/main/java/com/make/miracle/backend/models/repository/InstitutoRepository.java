@@ -15,6 +15,9 @@ public interface InstitutoRepository extends JpaRepository<Institucion, Long> {
 
     List<Institucion> findByTipoInstitucionNombre(String nombre);
 
+    Long countByTipoInstitucionNombre(String name);
+
+
 
 
 }
