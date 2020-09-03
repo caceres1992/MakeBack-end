@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CiudadService {
     @Autowired
     private CiudadRepository ciudadRepository;
 
-    public Ciudad findAll() {
-        return (Ciudad) ciudadRepository.findAll();
+    public List<Ciudad> findAll() {
+        return  ciudadRepository.findAll();
     }
 }

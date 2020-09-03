@@ -5,6 +5,8 @@ import com.make.miracle.backend.models.services.DistritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("/api")
@@ -15,7 +17,9 @@ public class DistritoController {
 
 
     @GetMapping("/distritos")
-    public Distrito findAll() {
+    public List<Distrito>
+    findAll()
+    {
         return distritoService.findAll();
     }
 }
