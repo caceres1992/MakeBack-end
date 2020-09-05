@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
 @RestController
 @RequestMapping("/api")
 public class EstudianteControllers {
