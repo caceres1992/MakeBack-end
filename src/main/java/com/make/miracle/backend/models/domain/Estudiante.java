@@ -52,7 +52,7 @@ public class Estudiante implements Serializable {
     private Boolean estado;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_distrito", nullable = false)
+    @JoinColumn(name = "id_distrito", nullable = true)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Distrito distrito;
 
