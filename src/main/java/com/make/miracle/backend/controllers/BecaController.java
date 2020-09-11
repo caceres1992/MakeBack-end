@@ -8,11 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+//@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api")
 public class BecaController {
@@ -25,6 +27,25 @@ public class BecaController {
     public List<Beca> findAll() {
         return becaService.findAll();
     }
+
+    @GetMapping("/becas/{id}")
+    public Beca findById(@PathVariable Long id)
+    {
+        return becaService.finByid(id);
+    }
+
+
+    @GetMapping("/becas/top")
+    public List<Beca> findTopBeca()
+    {
+        return becaService.findTopBeca();
+    }
+
+
+
+
+
+
 
 
     @PostMapping("/becas")
@@ -51,8 +72,23 @@ public class BecaController {
         Map<String, Object> response = new HashMap<>();
         try {
             becaService.update(beca, id);
-            response.put("message", "scholarship Updated");
-            response.put("scholarship", "from " + beca.getEstudiante().getNombre());
+            response.put("message", "scholarship Updated with sponsor " + beca.getPatrocinador().getNombre());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (DataAccessException e) {
+            response.put("message ", "Error updating");
+            response.put("error", e.getMessage().concat(" : ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
+
+    @PutMapping("/becas/final/{id}")
+    public ResponseEntity<?> updateFinal(@RequestBody Beca beca, @PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            becaService.finalizarBeca(beca, id);
+            response.put("message", "scholarship final");
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (DataAccessException e) {
             response.put("message ", "Error updating");

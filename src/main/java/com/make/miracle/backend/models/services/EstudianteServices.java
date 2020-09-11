@@ -43,7 +43,6 @@ public class EstudianteServices {
 
     //metodo Guardar Estudiante
 
-    @Transactional
     public Estudiante save(Estudiante estudiante) {
         Estudiante estudianteNuevo = estudianteRepository.save(estudiante);
         return estudianteNuevo;

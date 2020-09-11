@@ -20,29 +20,6 @@ insert into tipo_instituciones(id,nombre)values (2,'INSTITUTO');
 
 
 
-
-#H2
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(1,'CESAR VALLEJO',1,1);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(2,'CESAR VALLEJO',1,2);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(3,'CESAR VALLEJO',1,4);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(4,'CESAR VALLEJO',1,5);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(5,'PRIVADA DEL NORTE',1,2);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(6,'PRIVADA DEL NORTE',1,4);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(7,'PRIVADA DEL NORTE',1,5);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(8,'PRIVADA DEL NORTE',1,1);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(9,'PRIVADA DEL NORTE',1,11);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(10,'PRIVADA DEL NORTE',1,8);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(11,'PRIVADA DEL NORTE',1,9);
-#
-#
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(12,'CIBERTEC',2,8);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(13,'IDAT',2,8);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(14,'CIBERTEC',2,11);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(15,'IDAT',2,10);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(16,'CIBERTEC',2,9);
-# INSERT INTO instituciones(id,nombre,id_carrera,id_tipo_institucion)VALUES(17,'IDAT',2,9);
-#H2
-
 insert into carreras(nombre)values ('INGENIERIA DE SISTEMA');
 insert into carreras(nombre)values ('INGENIERIA DE SOFTWARE');
 insert into carreras(nombre)values ('INGENIERO CIVIL');
@@ -55,56 +32,16 @@ insert into carreras(nombre)values ('CONTABILIDAD');
 insert into carreras(nombre)values ('DISENO GRAFICO');
 insert into carreras(nombre)values ('DISENO DE INTERIORES');
 
-# -- CESAR VALLEJO
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(1,1,1);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(2,1,2);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(3,1,3);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(4,1,4);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(5,1,5);
-#
-# -- PRIVADA DEL NORTE
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(6,2,1);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(7,2,2);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(8,2,3);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(9,2,4);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(10,2,5);
-# -- UTP
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(11,5,1);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(12,5,2);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(13,5,3);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(14,5,4);
-#
-# -- IDAT INSTITUO
-#
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(15,7,9);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(16,7,10);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(17,7,11);
-# INSERT INTO DETALLE_CARRERAS(id,id_institucion,id_carrera)VALUES(18,7,8);
 
 
-insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre , sexo, telefono,id_distrito)values ('CACERES' ,'a18100054', 'JASSON@GMAIL.COM' ,'MZ G LOTE 11','47474754' ,1 ,'2020-01-01','JASSON','M','741258963',1);
-insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre , sexo, telefono,id_distrito)values ('CASTRO PAIRAZAMAN' ,'a18100014', 'CRAIG@GMAIL.COM' ,'AV LAS FLORES 123','75841258' ,1 ,'2020-02-02','CRAIG KEM','M','369852147',1);
-insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre , sexo, telefono,id_distrito)values ('SUAREZ' , 'R185452','ESAUD@GMAIL.COM' ,'AV CAQUETA 485','85214787' ,1 ,'2005-01-01','ESAUD','M','852852147',1);
-insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre , sexo, telefono,id_distrito)values ('CASTILLO' ,'Z7489654', 'KIMBERLY@GMAIL.COM' ,'AV LA PAZ 4785','85244485' ,1 ,'1999-05-05','KIMBERLY','F','112233445',1);
+insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre,FECHA_REGISTRADA  , sexo, telefono,id_distrito)values ('CACERES' ,'a18100054', 'JASSON@GMAIL.COM' ,'MZ G LOTE 11','47474754' ,1 ,'1992-06-17','JASSON','2020-01-01','M','741258963',1);
+insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre ,FECHA_REGISTRADA , sexo, telefono,id_distrito)values ('CASTRO PAIRAZAMAN' ,'a18100014', 'CRAIG@GMAIL.COM' ,'AV LAS FLORES 123','75841258' ,1 ,'1993-05-01','CRAIG KEM','2020-01-01','M','369852147',1);
+insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre,FECHA_REGISTRADA  , sexo, telefono,id_distrito)values ('SUAREZ' , 'R185452','ESAUD@GMAIL.COM' ,'AV CAQUETA 485','85214787' ,1 ,'2000-01-01','ESAUD','2020-01-01','M','852852147',1);
+insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,estado, fecha_nac,nombre ,FECHA_REGISTRADA , sexo, telefono,id_distrito)values ('CASTILLO' ,'Z7489654', 'KIMBERLY@GMAIL.COM' ,'AV LA PAZ 4785','85244485' ,1 ,'1999-05-05','KIMBERLY','2020-01-01','F','112233445',1);
 
 
-# INSERT INTO USUARIOS (nombre,apellido,username,password,enable) values ('Doriz','Bazan','supervisor','$2a$10$nTjqZGFJq2.e6ugdz49h3eDzAaakRoXbEkAaQ9jSFzx2bjvqU9uDG',1);
-# INSERT INTO USUARIOS (nombre,apellido,username,password,enable) values ('Jasson','caceres','admin','$2a$10$Okg.e5j.aZT3fxF0MdpsweAiTyZbqBvT2KqIuqzQ.Wg/uct8z2c0a',1);
-# INSERT INTO USUARIOS (nombre,apellido,username,password,enable) values ('jefry','villareal','estudiante1','$2a$10$qlOBFlWzLrGww.NCQcIXpOcVSWoEUYnSSM1M2uKJpaCEkqV/D7iNK',1);
-#
-
-insert into roles(id,nombre) values  (1,'ROLE_SUPERVISOR');
-insert into roles(id,nombre) values  (2,'ROLE_ADMIN');
-insert into roles(id,nombre) values  (3,'ROLE_ESTUDIANTE');
 
 
-insert into usuarios_roles (usuario_id,role_id) values (1,1);
-insert into usuarios_roles (usuario_id,role_id) values (2,2);
-insert into usuarios_roles (usuario_id,role_id) values (2,1);
-insert into usuarios_roles (usuario_id,role_id) values (3,3);
-
-
-#
 insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CESAR VALLEJO',1,1);
 insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CESAR VALLEJO',2,1);
 insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CESAR VALLEJO',4,1);
@@ -131,6 +68,8 @@ insert into actividades(descripcion,direccion,estado,fecha_registro,nombre) valu
 
 insert into asistencia(salida,comentario,entrada,estado,total_horas,id_actividad,id_estudiante) values  ('18:00','registro de todo los estudiantes','14:00',1,null,1,1);
 
-insert into becas ( estado ,facha_registro ,observacion ,id_carrera ,id_estudiante ,id_institucion ,id_patrocinador ) values  ('p','2020/10/10','vacio',1,2,5,1);
-insert into becas ( estado ,facha_registro ,observacion ,id_carrera ,id_estudiante ,id_institucion ,id_patrocinador ) values  ('p','2020/10/10','vacio',1,2,1,1);d
+INSERT INTO BECAS (ESTADO ,FECHA_CULMINADO ,FECHA_REGISTRO ,OBSERVACION ,ID_CARRERA ,ID_ESTUDIANTE ,ID_INSTITUCION ,ID_PATROCINADOR ) VALUES ('A','2015-05-10','2018-10-10','FUE ANULADO POR COSAS BLA BLA BLA',1,1,1,1);
+INSERT INTO BECAS (ESTADO ,FECHA_CULMINADO ,FECHA_REGISTRO ,OBSERVACION ,ID_CARRERA ,ID_ESTUDIANTE ,ID_INSTITUCION ,ID_PATROCINADOR ) VALUES ('F','2017-05-10','2018-12-25','TERMINO',2,2,2,2);
+INSERT INTO BECAS (ESTADO ,FECHA_CULMINADO ,FECHA_REGISTRO ,OBSERVACION ,ID_CARRERA ,ID_ESTUDIANTE ,ID_INSTITUCION ,ID_PATROCINADOR ) VALUES ('A','2019-12-20','2018-10-30','DEJO DE ESTUDIAR',3,1,2,NULL);
+INSERT INTO BECAS (ESTADO ,FECHA_CULMINADO ,FECHA_REGISTRO ,OBSERVACION ,ID_CARRERA ,ID_ESTUDIANTE ,ID_INSTITUCION ,ID_PATROCINADOR ) VALUES ('F','2018-12-12','2018-10-30','TERMINO',3,1,2,NULL);
 

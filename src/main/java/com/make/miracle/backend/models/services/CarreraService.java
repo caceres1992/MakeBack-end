@@ -19,4 +19,8 @@ public class CarreraService {
     public List<Carrera> findAll() {
         return carreraRepository.findAll();
     }
+
+//    public Carrera save(Carrera carrera){
+//        Carrera newCarrera =
+//    }
 }

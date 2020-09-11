@@ -28,15 +28,11 @@ public class Beca implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "facha_registro")
+    @Column(name = "fecha_registro")
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
-
-
     private String observacion;
     private String estado;
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_estudiante", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -57,9 +53,14 @@ public class Beca implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Carrera carrera;
 
+
+    @Column(name = "fecha_culminado")
+    @Temporal(TemporalType.DATE)
+    private Date fechaCulminado;
+
     @PrePersist
     public void prePersist() {
-        estado = "p";
+        estado = "activo";
         fechaRegistro = new Date();
     }
 

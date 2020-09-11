@@ -3,7 +3,8 @@ package com.make.miracle.backend.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+//@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/")
 public class MainController {

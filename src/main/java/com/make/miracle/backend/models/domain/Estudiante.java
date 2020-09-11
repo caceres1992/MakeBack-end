@@ -1,6 +1,8 @@
 package com.make.miracle.backend.models.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -48,6 +50,10 @@ public class Estudiante implements Serializable {
     private String correo;
     @Column(name = "cod_estudiante")
     private String codigoEstudiante;
+
+    @Column(name = "fecha_registrada")
+//    @Temporal(TemporalType.DATE)
+    private LocalDate registrado;
     @Column(nullable = false)
     private Boolean estado;
 
@@ -58,7 +64,13 @@ public class Estudiante implements Serializable {
 
     @PrePersist
     public void prePersist() {
+
+
+
+        registrado = LocalDate.now();
+        System.out.println(registrado);
         estado = true;
+
     }
 
 

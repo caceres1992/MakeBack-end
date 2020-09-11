@@ -37,7 +37,7 @@ public class InstitutoService {
                 institucionupdate.setCarrera(institucion.getCarrera());
                 institucionupdate.setNombre(institucion.getNombre());
                 institucionupdate.setTipoInstitucion(institucion.getTipoInstitucion());
-        return institucionupdate;
+        return institutoRepository.save(institucionupdate);
     }
 
     public Long countInstituciones(String institucion){
