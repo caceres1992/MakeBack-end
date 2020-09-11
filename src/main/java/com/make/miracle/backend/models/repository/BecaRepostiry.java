@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface BecaRepostiry extends JpaRepository<Beca, Long> {
 
-        List<Beca> findTop3ByOrderByFechaCulminadoDesc();
+
 
         @Query(value = "select * from Becas as  b where b.estado='F'  order  by b.FECHA_CULMINADO desc ",nativeQuery = true)
         List<Beca>findTopBeca();
