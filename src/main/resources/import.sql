@@ -42,26 +42,29 @@ insert into estudiantes (  apellido ,cod_estudiante ,correo , direccion,dni ,est
 
 
 
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CESAR VALLEJO',1,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CESAR VALLEJO',2,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CESAR VALLEJO',4,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CESAR VALLEJO',5,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('PRIVADA DEL NORTE',2,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('PRIVADA DEL NORTE',4,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('PRIVADA DEL NORTE',5,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('PRIVADA DEL NORTE',1,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('PRIVADA DEL NORTE',11,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('PRIVADA DEL NORTE',8,1);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('PRIVADA DEL NORTE',9,1);
+insert into instituciones(nombre,id_tipo_institucion)values ('CESAR VALLEJO',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('CESAR VALLEJO',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('CESAR VALLEJO',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('CESAR VALLEJO',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('PRIVADA DEL NORTE',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('PRIVADA DEL NORTE',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('PRIVADA DEL NORTE',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('PRIVADA DEL NORTE',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('PRIVADA DEL NORTE',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('PRIVADA DEL NORTE',1);
+insert into instituciones(nombre,id_tipo_institucion)values ('PRIVADA DEL NORTE',1);
 
 
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CIBERTEC',8,2);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('IDAT',8,2);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CIBERTEC',11,2);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('IDAT',10,2);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('CIBERTEC',9,2);
-insert into instituciones(nombre,id_carrera,id_tipo_institucion)values ('IDAT',9,2);
+insert into instituciones(nombre,id_tipo_institucion)values ('CIBERTEC',2);
+insert into instituciones(nombre,id_tipo_institucion)values ('IDAT',2);
+insert into instituciones(nombre,id_tipo_institucion)values ('CIBERTEC',2);
+insert into instituciones(nombre,id_tipo_institucion)values ('IDAT',2);
+insert into instituciones(nombre,id_tipo_institucion)values ('CIBERTEC',2);
+insert into instituciones(nombre,id_tipo_institucion)values ('IDAT',2);
 
+INSERT INTO DETALLE_CARRERAS ( ID_CARRERA ,ID_INSTITUCION) VALUES (5,1)
+INSERT INTO DETALLE_CARRERAS ( ID_CARRERA ,ID_INSTITUCION) VALUES (4,7)
+INSERT INTO DETALLE_CARRERAS ( ID_CARRERA ,ID_INSTITUCION) VALUES (3,8)
 
 insert into actividades(descripcion,direccion,estado,fecha_registro,nombre) values  ('casa de la Familia Esther','Cerro el Paraiso' ,1,'2019-05-05','Construccion');
 insert into actividades(descripcion,direccion,estado,fecha_registro,nombre) values  ('TEMA DEL DIA : DAR GRACIAS','JERUSALEN' ,1,'2019-05-05','Star Kids');

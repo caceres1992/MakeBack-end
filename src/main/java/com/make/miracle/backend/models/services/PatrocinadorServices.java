@@ -34,7 +34,7 @@ public class PatrocinadorServices {
     public Patrocinador save(Patrocinador patrocinador) {
         Patrocinador patrocinadornuevo = patrocinadorDao.save(patrocinador);
 
-        return patrocinador;
+        return patrocinadornuevo;
     }
 
 

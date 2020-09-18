@@ -10,9 +10,8 @@ import java.util.Optional;
 
 public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
 
-    List<Estudiante> findByEstado(String status);
 
-    List<Estudiante> findTop3ByOrderByIdDesc();
+    List<Estudiante> findTop5ByOrderByIdDesc();
 
 
 }

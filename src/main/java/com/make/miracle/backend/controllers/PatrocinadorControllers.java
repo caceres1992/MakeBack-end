@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+//@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api")
 public class PatrocinadorControllers {
@@ -33,23 +33,8 @@ public class PatrocinadorControllers {
 
     //metodo obtener informacion por id del patrocinador
     @GetMapping("/patrocinadores/{id}")
-    public ResponseEntity<?> show(@PathVariable Long id) {
-        Patrocinador patrocinador = null;
-        Map<String, Object> response = new HashMap<>();
-        try {
-            patrocinador = patrocinadorServices.finById(id);
-        } catch (DataAccessException e) {
-            response.put("mensaje", "Error al Realizar la Consulta en la BD");
-            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        //MANEJO DE ERROR EN CASO NO SE ENCUENTRE EL ID
-        if (patrocinador == null) {
-            response.put("mensaje", "El Patrocinador ID : ".concat(id.toString().concat("No Existe en la Base de datos")));
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(response, HttpStatus.OK);
-
+    public Patrocinador show(@PathVariable Long id) {
+return patrocinadorServices.finById(id);
     }
 
 
@@ -65,14 +50,13 @@ public class PatrocinadorControllers {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         response.put("mensaje", "El Patrocinador ah sido creado con exito");
-        response.put("patrocinador", patrocinador.getNombre() + "welcome ");
+        response.put("patrocinador ", patrocinador.getNombre() + "welcome ");
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     //actualizar Patrocinador
     @PutMapping("/patrocinadores/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> update(@RequestBody Patrocinador patrocinador, @PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
         try {
@@ -94,7 +78,6 @@ public class PatrocinadorControllers {
 
     //patrocinador cambiar estado de true a false o visebersa
     @PutMapping("/patrocinadores/estado/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> statusUpdate(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
         try {

@@ -34,7 +34,6 @@ public class InstitutoService {
 
     public Institucion update (Institucion institucion ,Long id){
                 Institucion institucionupdate = institutoRepository.getOne(id);
-                institucionupdate.setCarrera(institucion.getCarrera());
                 institucionupdate.setNombre(institucion.getNombre());
                 institucionupdate.setTipoInstitucion(institucion.getTipoInstitucion());
         return institutoRepository.save(institucionupdate);

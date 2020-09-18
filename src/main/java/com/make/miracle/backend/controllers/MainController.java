@@ -3,8 +3,8 @@ package com.make.miracle.backend.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-//@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+//@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/")
 public class MainController {
@@ -50,8 +50,8 @@ public class MainController {
                 "    <div class=\"contenido\">\n" +
                 "        <h1>Api Make a Miracle</h1>\n" +
                 "        <a href=\"https://www.makeamiracle.net/\" target=\"_blank\">makeamiracle.net</a>\n" +
-                "        <p>Creado por </p>\n" +
-                "        <p class=\"hashtag\">#JassonCaceresVillar</p>\n" +
+                "        <p>Trabajo en conjunto </p>\n" +
+                "        <p class=\"hashtag\">#Jasson & Andony</p>\n" +
                 "    </div>";
     }
 }

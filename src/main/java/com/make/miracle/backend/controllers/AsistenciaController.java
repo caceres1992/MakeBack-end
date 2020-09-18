@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+//@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api")
 public class AsistenciaController {

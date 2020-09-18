@@ -23,8 +23,8 @@ public class EstudianteServices {
 
 
 
-    public List<Estudiante> findTop3ByOrderByIdDesc() {
-        return estudianteRepository.findTop3ByOrderByIdDesc();
+    public List<Estudiante> findTop5ByOrderByIdDesc() {
+        return estudianteRepository.findTop5ByOrderByIdDesc();
     }
 
     //listar Estudiante with paginator

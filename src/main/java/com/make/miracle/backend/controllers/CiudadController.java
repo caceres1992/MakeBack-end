@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+//@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api")
 public class CiudadController {
@@ -21,5 +21,11 @@ public class CiudadController {
     @GetMapping("/ciudad")
     public List<Ciudad> findAll() {
         return ciudadService.findAll();
+    }
+
+
+    @GetMapping("/ciudad/{id}")
+    public Ciudad findAll(@PathVariable Long id ) {
+        return ciudadService.getById(id);
     }
 }

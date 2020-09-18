@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-//@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"http://localhost:3000","https://makeamiracle.netlify.app"})
+//@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api")
 public class EstudianteControllers {
@@ -33,7 +33,6 @@ public class EstudianteControllers {
     }
 
 
-    //Obtener  usuario por su Id
 
     @GetMapping("/estudiantes/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
@@ -72,7 +71,6 @@ public class EstudianteControllers {
     }
 
 
-    //Metodo Actualizar Estudiante
 
     @PutMapping("/estudiantes/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Estudiante estudiante) {
@@ -88,8 +86,6 @@ public class EstudianteControllers {
         return new ResponseEntity<>(respo, HttpStatus.OK);
 
     }
-
-    //Actualizacion de Estado
 
     @PutMapping("/estudiantes/estado/{id}")
     public ResponseEntity<?> updateStatus(@PathVariable Long id) {
@@ -108,7 +104,7 @@ public class EstudianteControllers {
 
     @GetMapping("/estudiantes/top")
     public List<Estudiante> findTop3ByOrderByIdDesc() {
-        return estudianteservices.findTop3ByOrderByIdDesc();
+        return estudianteservices.findTop5ByOrderByIdDesc();
     }
 
 
